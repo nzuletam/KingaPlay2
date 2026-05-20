@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#08080f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>KingaPlay</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- ═══════ SPLASH ═══════ -->
+<div id="splash">
+  <div class="splash-logo">
+    <div class="splash-icon" id="splashIcon">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" rx="14" fill="url(#sbg)"/>
+        <polygon points="23,18 23,42 44,30" fill="white" opacity="0.95"/>
+        <rect x="12" y="26" width="5" height="18" rx="2.5" fill="white" opacity="0.65"/>
+        <rect x="19" y="19" width="5" height="25" rx="2.5" fill="white" opacity="0.8"/>
+        <defs>
+          <linearGradient id="sbg" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#e040fb"/>
+            <stop offset="100%" stop-color="#ff6d00"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <span class="splash-name">KingaPlay</span>
+    <span class="splash-tagline">Tu media, a tu manera</span>
+  </div>
+  <div class="splash-bars">
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div>
+  </div>
+</div>
+
+<!-- ═══════ APP ═══════ -->
+<div id="app" class="hidden">
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-view="library" onclick="showView('library')">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h10M4 18h10"/></svg>
+      <span>Audio</span>
+    </button>
+    <button class="nav-btn" data-view="videos" onclick="showView('videos')">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3V9z"/></svg>
+      <span>Video</span>
+    </button>
+    <button class="nav-btn" data-view="folders" onclick="showView('folders')">
+      <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>
+      <span>Carpetas</span>
+    </button>
+    <button class="nav-btn" data-view="artists" onclick="showView('artists')">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span>Artistas</span>
+    </button>
+    <button class="nav-btn" data-view="favorites" onclick="showView('favorites')">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <span>Favoritos</span>
+    </button>
+    <button class="nav-btn" data-view="settings" onclick="showView('settings')">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span>Config</span>
+    </button>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- ── AUDIO LIBRARY ── -->
+    <div id="view-library" class="view active">
+      <div class="view-header">
+        <div class="header-top">
+          <h1 class="app-title">KingaPlay</h1>
+          <button class="scan-btn" onclick="scanFiles('audio')">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+            Escanear
+          </button>
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="filterLibrary('all',this)">Todos</button>
+          <button class="filter-tab" onclick="filterLibrary('mp3',this)">MP3</button>
+          <button class="filter-tab" onclick="filterLibrary('flac',this)">FLAC</button>
+          <button class="filter-tab" onclick="filterLibrary('aac',this)">AAC</button>
+          <button class="filter-tab" onclick="filterLibrary('wav',this)">WAV</button>
+          <button class="filter-tab" onclick="filterLibrary('ogg',this)">OGG</button>
+          <button class="filter-tab" onclick="filterLibrary('m4a',this)">M4A</button>
+        </div>
+        <div class="search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Buscar canciones..." oninput="searchLibrary(this.value)">
+        </div>
+      </div>
+      <div id="song-list" class="song-list">
+        <div class="empty-state">
+          <div class="empty-icon">🎵</div>
+          <p>Escanea tus archivos de audio<br>para comenzar a escuchar</p>
+          <button class="btn-primary" onclick="scanFiles('audio')">Escanear Audio</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VIDEO LIBRARY ── -->
+    <div id="view-videos" class="view">
+      <div class="view-header">
+        <div class="header-top">
+          <h2>Videos</h2>
+          <button class="scan-btn" onclick="scanFiles('video')">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3V9z"/></svg>
+            Escanear
+          </button>
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="filterVideos('all',this)">Todos</button>
+          <button class="filter-tab" onclick="filterVideos('mp4',this)">MP4</button>
+          <button class="filter-tab" onclick="filterVideos('mkv',this)">MKV</button>
+          <button class="filter-tab" onclick="filterVideos('webm',this)">WEBM</button>
+          <button class="filter-tab" onclick="filterVideos('mov',this)">MOV</button>
+          <button class="filter-tab" onclick="filterVideos('avi',this)">AVI</button>
+        </div>
+        <div class="search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="searchVideoInput" placeholder="Buscar videos..." oninput="searchVideos(this.value)">
+        </div>
+      </div>
+      <div id="video-list" class="video-list">
+        <div class="empty-state">
+          <div class="empty-icon">🎬</div>
+          <p>Escanea tus archivos de video<br>para comenzar a reproducir</p>
+          <button class="btn-primary" onclick="scanFiles('video')">Escanear Videos</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CARPETAS ── -->
+    <div id="view-folders" class="view">
+      <div class="view-header">
+        <h2>Carpetas</h2>
+        <p class="sub-label">Audio y video por directorio</p>
+      </div>
+      <div id="folder-list" class="folder-list">
+        <div class="empty-state"><div class="empty-icon">📁</div><p>No hay carpetas escaneadas</p></div>
+      </div>
+    </div>
+
+    <!-- ── ARTISTAS ── -->
+    <div id="view-artists" class="view">
+      <div class="view-header">
+        <h2>Artistas</h2>
+        <p class="sub-label">Ordenado por nombre</p>
+      </div>
+      <div id="artist-list" class="artist-grid">
+        <div class="empty-state"><div class="empty-icon">🎤</div><p>No hay artistas encontrados</p></div>
+      </div>
+    </div>
+
+    <!-- ── FAVORITOS ── -->
+    <div id="view-favorites" class="view">
+      <div class="view-header">
+        <h2>Favoritos</h2>
+        <p class="sub-label">Tu media favorita</p>
+      </div>
+      <div id="favorites-list" class="song-list">
+        <div class="empty-state"><div class="empty-icon">❤️</div><p>Agrega archivos a favoritos<br>tocando el corazón</p></div>
+      </div>
+    </div>
+
+    <!-- ── CONFIGURACIÓN ── -->
+    <div id="view-settings" class="view">
+      <div class="view-header"><h2>Configuración</h2></div>
+      <div class="settings-content">
+
+        <div class="setting-group">
+          <h3 class="setting-group-title">Reproducción</h3>
+          <div class="setting-item">
+            <span>Fade entre pistas</span>
+            <label class="toggle"><input type="checkbox" id="fadeToggle" checked><span class="toggle-slider"></span></label>
+          </div>
+          <div class="setting-item">
+            <span>Reanudar al abrir</span>
+            <label class="toggle"><input type="checkbox" id="resumeToggle"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="setting-item">
+            <span>Video en pantalla completa</span>
+            <label class="toggle"><input type="checkbox" id="videoFullscreenToggle" checked><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h3 class="setting-group-title">Información</h3>
+          <div class="setting-item-info"><span>Versión</span><span class="val">3.0.0</span></div>
+          <div class="setting-item-info"><span>Canciones</span><span class="val" id="totalSongs">0</span></div>
+          <div class="setting-item-info"><span>Videos</span><span class="val" id="totalVideos">0</span></div>
+          <div class="setting-item-info"><span>Favoritos</span><span class="val" id="totalFavs">0</span></div>
+        </div>
+
+        <button class="btn-danger" onclick="clearLibrary()">Limpiar Biblioteca</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MINI PLAYER -->
+  <div id="mini-player" class="mini-player hidden" onclick="openPlayer()">
+    <div class="mini-art"><div class="mini-art-inner" id="miniArt">♪</div></div>
+    <div class="mini-info">
+      <span id="miniTitle" class="mini-title">Sin reproducción</span>
+      <span id="miniArtist" class="mini-artist">—</span>
+    </div>
+    <div class="mini-controls">
+      <button onclick="event.stopPropagation();toggleFavorite(currentTrackIndex,'audio')" id="miniFav" class="mini-btn">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      </button>
+      <button onclick="event.stopPropagation();togglePlay()" id="miniPlayBtn" class="mini-btn play">
+        <svg id="miniPlayIcon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg>
+      </button>
+      <button onclick="event.stopPropagation();nextTrack()" class="mini-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20" stroke="currentColor" stroke-width="2" fill="none"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+    </div>
+    <div class="mini-progress"><div class="mini-progress-bar" id="miniProgressBar"></div></div>
+  </div>
+
+</div><!-- /#app -->
+
+<!-- ═══════ AUDIO PLAYER MODAL ═══════ -->
+<div id="player-modal" class="player-modal hidden">
+  <div class="player-bg" id="playerBg"></div>
+  <div class="player-overlay"></div>
+  <div class="player-inner">
+    <div class="player-header">
+      <button class="player-icon-btn" onclick="closePlayer()">
+        <svg viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      </button>
+      <span class="now-playing-label">REPRODUCIENDO · AUDIO</span>
+      <button class="player-icon-btn" onclick="togglePlayerMenu()">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <div class="album-art-container">
+      <div class="album-art" id="albumArt">
+        <div class="album-art-inner">
+          <div class="vinyl-ring"></div>
+          <div class="vinyl-center">♪</div>
+        </div>
+      </div>
+      <div class="art-glow"></div>
+    </div>
+
+    <div class="player-info">
+      <div class="player-title-row">
+        <div class="player-song-info">
+          <h2 class="player-title" id="playerTitle">Selecciona una pista</h2>
+          <p class="player-artist" id="playerArtist">—</p>
+        </div>
+        <button class="fav-btn" id="favBtn" onclick="toggleFavorite(currentTrackIndex,'audio')">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </button>
+      </div>
+      <span class="player-format" id="playerFormat">—</span>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-bar-container" id="progressContainer" onclick="seekTrack(event)">
+        <div class="progress-bar-bg"></div>
+        <div class="progress-bar-fill" id="progressFill"></div>
+        <div class="progress-thumb" id="progressThumb"></div>
+      </div>
+      <div class="time-row">
+        <span id="currentTime">0:00</span>
+        <span id="totalTime">0:00</span>
+      </div>
+    </div>
+
+    <div class="controls-section">
+      <button class="ctrl-btn" id="shuffleBtn" onclick="toggleShuffle()">
+        <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8" stroke="currentColor" stroke-width="2" fill="none"/><line x1="4" y1="20" x2="21" y2="3" stroke="currentColor" stroke-width="2"/><polyline points="21 16 21 21 16 21" stroke="currentColor" stroke-width="2" fill="none"/><line x1="4" y1="4" x2="9" y2="9" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <button class="ctrl-btn prev-btn" onclick="prevTrack()">
+        <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4" stroke="currentColor" stroke-width="2" fill="none"/><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <button class="ctrl-btn play-btn" id="playBtn" onclick="togglePlay()">
+        <svg id="playIcon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg>
+      </button>
+      <button class="ctrl-btn next-btn" onclick="nextTrack()">
+        <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20" stroke="currentColor" stroke-width="2" fill="none"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <button class="ctrl-btn" id="repeatBtn" onclick="toggleRepeat()">
+        <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M3 11V9a4 4 0 014-4h14" stroke="currentColor" stroke-width="2" fill="none"/><polyline points="7 23 3 19 7 15" stroke="currentColor" stroke-width="2" fill="none"/><path d="M21 13v2a4 4 0 01-4 4H3" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      </button>
+    </div>
+
+    <div class="volume-section">
+      <svg class="vol-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      <input type="range" id="volumeSlider" min="0" max="100" value="80" oninput="setVolume(this.value)" class="volume-slider">
+      <svg class="vol-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M15.54 8.46a5 5 0 010 7.07" stroke="currentColor" stroke-width="2" fill="none"/><path d="M19.07 4.93a10 10 0 010 14.14" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+    </div>
+
+    <div class="eq-section">
+      <div class="eq-header">
+        <span class="eq-label">ECUALIZADOR</span>
+        <div class="eq-presets">
+          <button class="eq-preset active" onclick="setPreset('flat',this)">Plano</button>
+          <button class="eq-preset" onclick="setPreset('bass',this)">Bass</button>
+          <button class="eq-preset" onclick="setPreset('rock',this)">Rock</button>
+          <button class="eq-preset" onclick="setPreset('pop',this)">Pop</button>
+          <button class="eq-preset" onclick="setPreset('jazz',this)">Jazz</button>
+          <button class="eq-preset" onclick="setPreset('classical',this)">Clásica</button>
+        </div>
+      </div>
+      <div class="eq-bands" id="eqBands"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIDEO PLAYER MODAL ═══════ -->
+<div id="video-modal" class="video-modal hidden">
+  <div class="video-modal-inner">
+    <div class="video-header" id="videoHeader">
+      <button class="player-icon-btn" onclick="closeVideoPlayer()">
+        <svg viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      </button>
+      <span class="video-title-label" id="videoTitleLabel">Video</span>
+      <button class="player-icon-btn" onclick="toggleVideoFullscreen()">
+        <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+      </button>
+    </div>
+
+    <div class="video-wrap" id="videoWrap" onclick="toggleVideoControls()">
+      <video id="videoEl" preload="metadata" playsinline webkit-playsinline
+        onended="handleVideoEnded()" ontimeupdate="updateVideoProgress()" onloadedmetadata="onVideoMeta()">
+      </video>
+      <div class="video-tap-overlay">
+        <div class="video-tap-icon" id="videoTapIcon">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-controls" id="videoControls">
+      <div class="video-progress-wrap" onclick="seekVideo(event)">
+        <div class="video-progress-bg"></div>
+        <div class="video-progress-fill" id="videoProgressFill"></div>
+        <div class="video-progress-thumb" id="videoProgressThumb"></div>
+      </div>
+      <div class="video-ctrl-row">
+        <span class="video-time" id="videoCurrentTime">0:00</span>
+        <div class="video-ctrl-btns">
+          <button class="video-ctrl-btn" onclick="videoPrev()">
+            <svg viewBox="0 0 24 24"><polygon points="19,20 9,12 19,4" stroke="white" stroke-width="2" fill="none"/><line x1="5" y1="19" x2="5" y2="5" stroke="white" stroke-width="2"/></svg>
+          </button>
+          <button class="video-ctrl-btn video-play-btn" id="videoPlayBtn" onclick="toggleVideoPlay()">
+            <svg id="videoPlayIcon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg>
+          </button>
+          <button class="video-ctrl-btn" onclick="videoNext()">
+            <svg viewBox="0 0 24 24"><polygon points="5,4 15,12 5,20" stroke="white" stroke-width="2" fill="none"/><line x1="19" y1="5" x2="19" y2="19" stroke="white" stroke-width="2"/></svg>
+          </button>
+        </div>
+        <span class="video-time" id="videoTotalTime">0:00</span>
+      </div>
+      <div class="video-vol-row">
+        <svg class="vol-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/></svg>
+        <input type="range" class="volume-slider" id="videoVolumeSlider" min="0" max="100" value="80" oninput="setVideoVolume(this.value)">
+        <svg class="vol-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/><path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/></svg>
+      </div>
+      <div class="video-fav-row">
+        <button class="fav-btn" id="videoFavBtn" onclick="toggleFavorite(currentVideoIndex,'video')">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </button>
+        <span class="video-fav-label" id="videoFavLabel">Agregar a favoritos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCAN MODAL -->
+<div id="scan-modal" class="modal-overlay hidden">
+  <div class="scan-dialog">
+    <div class="scan-icon">
+      <svg viewBox="0 0 60 60">
+        <circle cx="30" cy="30" r="25" stroke="url(#sc)" stroke-width="2" fill="none" stroke-dasharray="157" class="scan-circle"/>
+        <defs><linearGradient id="sc" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#e040fb"/><stop offset="100%" stop-color="#ff6d00"/></linearGradient></defs>
+      </svg>
+      <div class="scan-pulse"></div>
+    </div>
+    <h3 id="scanTitle">Escaneando</h3>
+    <p id="scanStatus">Preparando...</p>
+    <div class="scan-progress-bar"><div class="scan-progress-fill" id="scanFill"></div></div>
+    <p class="scan-count" id="scanCount">0 archivos</p>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div id="context-menu" class="context-menu hidden">
+  <button onclick="addToQueue()">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19" stroke="var(--primary)" stroke-width="2"/><line x1="5" y1="12" x2="19" y2="12" stroke="var(--primary)" stroke-width="2"/></svg>
+    Agregar a cola
+  </button>
+  <button onclick="toggleFavoriteContext()">
+    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="var(--primary)" stroke-width="2" fill="none"/></svg>
+    <span id="favContextLabel">Favorito</span>
+  </button>
+  <button onclick="shareTrack()">
+    <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" stroke="var(--primary)" stroke-width="2" fill="none"/><circle cx="6" cy="12" r="3" stroke="var(--primary)" stroke-width="2" fill="none"/><circle cx="18" cy="19" r="3" stroke="var(--primary)" stroke-width="2" fill="none"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="var(--primary)" stroke-width="2"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="var(--primary)" stroke-width="2"/></svg>
+    Compartir
+  </button>
+  <button onclick="showTrackInfo()">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="var(--primary)" stroke-width="2" fill="none"/><line x1="12" y1="8" x2="12" y2="12" stroke="var(--primary)" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="var(--primary)" stroke-width="2"/></svg>
+    Información
+  </button>
+</div>
+
+<!-- INFO MODAL -->
+<div id="info-modal" class="modal-overlay hidden" onclick="closeInfoModal()">
+  <div class="info-dialog" onclick="event.stopPropagation()">
+    <h3>Información del Archivo</h3>
+    <div id="info-content" class="info-content"></div>
+    <button class="btn-primary" onclick="closeInfoModal()">Cerrar</button>
+  </div>
+</div>
+
+<audio id="audioEl" preload="metadata"></audio>
+<script src="./app.js"></script>
+</body>
+</html>
