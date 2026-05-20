@@ -12,7 +12,7 @@
   "theme_color": "#e040fb",
   "icons": [
     {
-      "src": "./icon-192.png",
+      "src": "./KingaPlay.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
